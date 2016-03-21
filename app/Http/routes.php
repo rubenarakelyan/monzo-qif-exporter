@@ -11,6 +11,10 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->version();
-});
+$app->get('/', 'DefaultController@home');
+$app->get('/r/to-mondo-auth', 'MondoController@redirectToMondoAuth');
+$app->get('/r/from-mondo-auth', 'MondoController@redirectFromMondoAuth');
+$app->get('/r/to-mondo-refresh', 'MondoController@redirectToMondoRefresh');
+$app->get('/accounts', 'MondoController@getAccounts');
+$app->get('/transactions', 'MondoController@getTransactions');
+$app->get('/transactions/download', 'MondoController@downloadTransactions');
