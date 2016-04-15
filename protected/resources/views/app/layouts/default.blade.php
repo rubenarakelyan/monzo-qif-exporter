@@ -10,7 +10,7 @@
   <body>
     <h1>Mondo QIF Exporter</h1>
     @yield('content')
-    <script src="js/jquery-2.2.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/bootstrap-3.3.6.min.js"></script>
   </body>
 </html>
