@@ -19,6 +19,6 @@ class DefaultController extends Controller
     // Home
     public function home(Request $request)
     {
-	    return view('home');
+	    return view('app.home');
     }
 }

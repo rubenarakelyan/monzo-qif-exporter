@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('app.layouts.default')
 
 @section('title', 'Mondo QIF Exporter')
 

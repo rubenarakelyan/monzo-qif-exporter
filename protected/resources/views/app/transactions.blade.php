@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('app.layouts.default')
 
 @section('title', 'List of your Mondo transactions')
 
