@@ -163,7 +163,7 @@ class MondoController extends Controller
 	    // Decode the response from Mondo
 	    $response = json_decode($response);
 	    
-	    return view('app.transactions', ['account_id' => $account_id, 'transactions' => $transactions]);
+	    return view('app.transactions', ['account_id' => $account_id, 'transactions' => $response->transactions]);
     }
     
     // Download a list of transactions from Mondo in QIF format
@@ -194,6 +194,6 @@ class MondoController extends Controller
 	    // Decode the response from Mondo
 	    $response = json_decode($response);
 	    
-	    return view('app.transactions-qif', ['account_id' => $account_id, 'transactions' => $transactions]);
+	    return view('app.transactions-qif', ['account_id' => $account_id, 'transactions' => $response->transactions]);
     }
 }
