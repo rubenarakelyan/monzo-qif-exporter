@@ -1,7 +1,7 @@
 <?php
 
 // File header
-echo "!Type:CCard\n!Account\nNMondo\nTPrepaid Debit Card\n";
+echo "!Type:CCard\n";
 
 // Transactions
 foreach ($transactions as $transaction)

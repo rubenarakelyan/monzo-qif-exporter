@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'DefaultController@home');
+Route::get('/', 'StaticController@home');
+Route::get('/about', 'StaticController@about');
+
 Route::get('/r/to-mondo-auth', 'MondoController@redirectToMondoAuth');
 Route::get('/r/from-mondo-auth', 'MondoController@redirectFromMondoAuth');
 Route::get('/r/to-mondo-refresh', 'MondoController@redirectToMondoRefresh');

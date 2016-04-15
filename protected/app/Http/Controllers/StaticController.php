@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DefaultController extends Controller
+class StaticController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -20,5 +20,11 @@ class DefaultController extends Controller
     public function home(Request $request)
     {
 	    return view('app.home');
+    }
+    
+    // About
+    public function about(Request $request)
+    {
+	    return view('app.about');
     }
 }
