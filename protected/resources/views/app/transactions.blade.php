@@ -12,20 +12,20 @@
           <table class="table table-hover">
 	        <thead>
 	          <tr>
-		        <th>Transaction description</th>
-		        <th>Amount</th>
+		        <th>Merchant name</th>
+		        <th class="text-right">Amount</th>
 	          </tr>
 	        </thead>
 	        <tbody>
 	          @foreach ($transactions as $transaction)
-	          <tr>
-		        <td>{{ $transaction->description }}</td>
-		        <td class="@if (($transaction->amount / 100) < 0) debit @else credit @endif">{{ Currency::withPrefix($transaction->amount / 100, $transaction->currency, 2) }}</td>
+	          <tr class="@if ($transaction->is_load) info @endif">
+		        <td>@if (!empty($transaction->merchant->logo)) <img src="{{ $transaction->merchant->logo }}" width="38" height="38" alt=""> @endif {{ $transaction->merchant->name }}</td>
+		        <td class="text-right @if (($transaction->amount / 100) < 0) debit @else credit @endif">{{ Currency::withPrefix(abs($transaction->amount / 100), $transaction->currency, 2) }}</td>
 	          </tr>
 	          @endforeach
 	        </tbody>
           </table>
-          <p><a href="/transactions/download?account_id={{ $account_id }}">Download transactions (QIF)</a></p>
+          <a href="/transactions/download?account_id={{ $account_id }}" class="btn btn-default"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download transactions (QIF)</a>
           @endif
 	    </div>
       </div>

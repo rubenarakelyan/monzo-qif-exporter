@@ -154,7 +154,7 @@ class MondoController extends Controller
 	    
 	    // Get the list of transactions
 	    $curl = curl_init();
-	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/transactions?account_id='.$account_id);
+	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/transactions?account_id='.$account_id.'&expand[]=merchant');
 	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.$request->session()->get('mondo_access_token')]);
 	    $response = curl_exec($curl);
