@@ -16,7 +16,7 @@
 	@foreach ($accounts as $account)
 	<tr>
 		<td>{{ $account->description }}</td>
-		<td>{{ $account->created }}</td>
+		<td>{{ (new \DateTime($account->created))->format('j F Y') }}</td>
 		<td><a href="/transactions?account_id={{ $account->id }}">Choose</a></td>
 	</tr>
 	@endforeach

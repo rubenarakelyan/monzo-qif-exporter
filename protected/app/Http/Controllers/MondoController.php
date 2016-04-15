@@ -132,7 +132,7 @@ class MondoController extends Controller
 	    // Decode the response from Mondo
 	    $response = json_decode($response);
 	    
-	    return view('app.accounts', ['accounts' => $response]);
+	    return view('app.accounts', ['accounts' => $response->accounts]);
     }
     
     // Get a list of transactions from Mondo
