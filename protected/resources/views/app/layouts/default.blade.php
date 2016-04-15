@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') | Mondo QIF Exporter</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
   </head>
   <body>
 	<div class="container">
@@ -18,12 +19,13 @@
 			  <span class="icon-bar"></span>
 			  <span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Mondo QIF Exporter</a>
+			<a class="navbar-brand" href="/">Mondo QIF Exporter</a>
 		  </div>
 		  <div class="collapse navbar-collapse" id="global-navbar-collapse">
 			<ul class="nav navbar-nav">
 			  <li><a href="/">Home</a></li>
 			  <li><a href="/accounts">Accounts</a></li>
+			  <li><a href="/about">About</a></li>
 			</ul>
 		  </div>
 	    </div>
