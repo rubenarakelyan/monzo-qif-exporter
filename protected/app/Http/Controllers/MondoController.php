@@ -54,7 +54,7 @@ class MondoController extends Controller
 		    $curl = curl_init();
 		    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/oauth2/token');
 		    curl_setopt($curl, CURLOPT_POST, true);
-		    curl_setopt($curl, CURLOPT_RETURN_TRANSFER, true);
+		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		    curl_setopt($curl, CURLOPT_POSTFIELDS, ['grant_type' => 'authorization_code', 'client_id' => $client_id, 'client_secret' => $client_secret, 'redirect_uri' => $redirect_uri, 'state' => $state]);
 		    $response = curl_exec($curl);
 		    curl_close($curl);
