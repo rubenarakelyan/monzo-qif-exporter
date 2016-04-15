@@ -67,6 +67,11 @@ $app->singleton(
 //     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
 
+$app->middleware([
+    Illuminate\Session\Middleware\StartSession::class,
+    Illuminate\View\Middleware\ShareErrorsFromSession::class
+]);
+
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
