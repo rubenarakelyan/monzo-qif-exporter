@@ -55,7 +55,7 @@ class MondoController extends Controller
 		    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/oauth2/token');
 		    curl_setopt($curl, CURLOPT_POST, true);
 		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		    curl_setopt($curl, CURLOPT_POSTFIELDS, 'grant_type=authorization_code&client_id='.$client_id.'&client_secret='.$client_secret.'&redirect_uri='.$redirect_uri.'&code='.$code);
+		    curl_setopt($curl, CURLOPT_POSTFIELDS, 'grant_type=authorization_code&client_id='.$client_id.'&client_secret='.urlencode($client_secret).'&redirect_uri='.$redirect_uri.'&code='.$code);
 		    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/x-www-form-urlencoded']);
 		    $response = curl_exec($curl);
 		    curl_close($curl);
@@ -70,7 +70,7 @@ class MondoController extends Controller
 		    $request->session()->put('mondo_user_id', $response->user_id);
 		    
 		    // Redirect back to where we came from
-		    return redirect(config('app.url').$request->session()->pull('mondo_auth_redirect_to'));
+		    return redirect($request->session()->pull('mondo_auth_redirect_to'));
 	    }
 	    else
 	    {
@@ -94,7 +94,7 @@ class MondoController extends Controller
 	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/oauth2/token');
 	    curl_setopt($curl, CURLOPT_POST, true);
 	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	    curl_setopt($curl, CURLOPT_POSTFIELDS, 'grant_type=refresh_token&client_id='.$client_id.'&client_secret='.$client_secret.'&refresh_token='.$refresh_token);
+	    curl_setopt($curl, CURLOPT_POSTFIELDS, 'grant_type=refresh_token&client_id='.$client_id.'&client_secret='.urlencode($client_secret).'&refresh_token='.$refresh_token);
 	    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/x-www-form-urlencoded']);
 	    $response = curl_exec($curl);
 	    curl_close($curl);
