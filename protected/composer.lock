@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c284a9c122da36c99a8b6597bdce7aa6",
-    "content-hash": "8b1485987e7c5949da82435d403e52e8",
+    "hash": "51f130e84e642fc31a9c8990c5e120e1",
+    "content-hash": "62a6e9df3303019cd72be97712c48233",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -894,6 +894,46 @@
                 "shell"
             ],
             "time": "2016-03-09 05:03:14"
+        },
+        {
+            "name": "sebastiansulinski/laravel-currency",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastiansulinski/laravel-currency.git",
+                "reference": "a2c7e4b38f723825c0009373dc9cedb229f725e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastiansulinski/laravel-currency/zipball/a2c7e4b38f723825c0009373dc9cedb229f725e4",
+                "reference": "a2c7e4b38f723825c0009373dc9cedb229f725e4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SSD\\Currency\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Sulinski",
+                    "email": "info@ssdtutorials.com"
+                }
+            ],
+            "description": "Currency component for Laravel 5+",
+            "time": "2016-04-01 18:08:41"
         },
         {
             "name": "swiftmailer/swiftmailer",

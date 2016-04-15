@@ -20,7 +20,7 @@
 	          @foreach ($transactions as $transaction)
 	          <tr>
 		        <td>{{ $transaction->description }}</td>
-		        <td>{{ $transaction->amount / 100 }} {{ $transaction->currency }}</td>
+		        <td>{{ Currency::withPrefix($transaction->amount / 100, $transaction->currency, 2) }}</td>
 	          </tr>
 	          @endforeach
 	        </tbody>
