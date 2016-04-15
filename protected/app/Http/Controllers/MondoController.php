@@ -28,7 +28,7 @@ class MondoController extends Controller
 	    $request->session()->put('mondo_auth_state', $state);
 	    
 	    // Decide where to redirect to
-	    $request->session()->put('mondo_auth_redirect_to', $request->input('redirect_to', config('app.url')));
+	    $request->session()->put('mondo_auth_redirect_to', $request->input('redirect_to', '/'));
 	    
 	    // Redirect to Mondo for authentication
 	    return redirect('https://auth.getmondo.co.uk/?client_id='.$client_id.'&redirect_uri='.$redirect_uri.'&response_type=code&state='.$state);
@@ -70,7 +70,7 @@ class MondoController extends Controller
 		    $request->session()->put('mondo_user_id', $response->user_id);
 		    
 		    // Redirect back to where we came from
-		    return redirect($request->session()->pull('mondo_auth_redirect_to'));
+		    return redirect(config('app.url').$request->session()->pull('mondo_auth_redirect_to'));
 	    }
 	    else
 	    {
@@ -118,7 +118,7 @@ class MondoController extends Controller
 	    if (empty($request->session()->get('mondo_access_token')))
 	    {
 		    // Redirect to Mondo auth
-		    return redirect('/r/to-mondo-auth');
+		    return redirect('/r/to-mondo-auth?redirect_to=/accounts');
 	    }
 	    
 	    // Get the list of accounts
@@ -141,7 +141,7 @@ class MondoController extends Controller
 	    if (empty($request->session()->get('mondo_access_token')))
 	    {
 		    // Redirect to Mondo auth
-		    return redirect('/r/to-mondo-auth');
+		    return redirect('/r/to-mondo-auth?redirect_to=/transactions');
 	    }
 	    
 	    $account_id = $request->input('account_id');
@@ -172,7 +172,7 @@ class MondoController extends Controller
 	    if (empty($request->session()->get('mondo_access_token')))
 	    {
 		    // Redirect to Mondo auth
-		    return redirect('/r/to-mondo-auth');
+		    return redirect('/r/to-mondo-auth?redirect_to=/transactions/download');
 	    }
 	    
 	    $account_id = $request->input('account_id');
