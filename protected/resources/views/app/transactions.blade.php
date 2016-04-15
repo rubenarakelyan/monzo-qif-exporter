@@ -18,8 +18,8 @@
 	        </thead>
 	        <tbody>
 	          @foreach ($transactions as $transaction)
-	          <tr class="@if ($transaction->is_load) info @endif">
-		        <td>@if (!empty($transaction->merchant->logo)) <img src="{{ $transaction->merchant->logo }}" width="38" height="38" alt=""> @endif {{ $transaction->merchant->name }}</td>
+	          <tr>
+		        <td>@if (!empty($transaction->merchant->logo)) <img src="{{ $transaction->merchant->logo }}" width="30" height="30" alt=""> @endif @if (!empty($transaction->merchant->name) {{ $transaction->merchant->name }} @else {{ $transaction->description }} @endif</td>
 		        <td class="text-right @if (($transaction->amount / 100) < 0) debit @else credit @endif">{{ Currency::withPrefix(abs($transaction->amount / 100), $transaction->currency, 2) }}</td>
 	          </tr>
 	          @endforeach
