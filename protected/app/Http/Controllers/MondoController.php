@@ -92,7 +92,7 @@ class MondoController extends Controller
 	    $curl = curl_init();
 	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/oauth2/token');
 	    curl_setopt($curl, CURLOPT_POST, true);
-	    curl_setopt($curl, CURLOPT_RETURN_TRANSFER, true);
+	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	    curl_setopt($curl, CURLOPT_POSTFIELDS, ['grant_type' => 'refresh_token', 'client_id' => $client_id, 'client_secret' => $client_secret, 'refresh_token' => $refresh_token]);
 	    $response = curl_exec($curl);
 	    curl_close($curl);
@@ -116,7 +116,7 @@ class MondoController extends Controller
 	    // Get the list of accounts
 	    $curl = curl_init();
 	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/accounts');
-	    curl_setopt($curl, CURLOPT_RETURN_TRANSFER, true);
+	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.$response->session()->get('mondo_access_token')]);
 	    $response = curl_exec($curl);
 	    curl_close($curl);
@@ -135,7 +135,7 @@ class MondoController extends Controller
 	    // Get the list of transactions
 	    $curl = curl_init();
 	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/transactions?account_id='.$account_id);
-	    curl_setopt($curl, CURLOPT_RETURN_TRANSFER, true);
+	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.$response->session()->get('mondo_access_token')]);
 	    $response = curl_exec($curl);
 	    curl_close($curl);
@@ -154,7 +154,7 @@ class MondoController extends Controller
 	    // Get the list of transactions
 	    $curl = curl_init();
 	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/transactions?account_id='.$account_id);
-	    curl_setopt($curl, CURLOPT_RETURN_TRANSFER, true);
+	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.$response->session()->get('mondo_access_token')]);
 	    $response = curl_exec($curl);
 	    curl_close($curl);
