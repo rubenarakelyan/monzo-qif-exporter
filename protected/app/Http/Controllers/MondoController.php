@@ -113,6 +113,12 @@ class MondoController extends Controller
     // Get a list of accounts from Mondo
     public function getAccounts(Request $request)
     {
+	    if (empty($request->session()->get('mondo_access_token')))
+	    {
+		    // Redirect to Mondo auth
+		    return redirect('/r/to-mondo-auth');
+	    }
+	    
 	    // Get the list of accounts
 	    $curl = curl_init();
 	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/accounts');
@@ -130,7 +136,19 @@ class MondoController extends Controller
     // Get a list of transactions from Mondo
     public function getTransactions(Request $request)
     {
+	    if (empty($request->session()->get('mondo_access_token')))
+	    {
+		    // Redirect to Mondo auth
+		    return redirect('/r/to-mondo-auth');
+	    }
+	    
 	    $account_id = $request->input('account_id');
+	    
+	    if (empty($account_id))
+	    {
+		    // Redirect to home page
+		    return redirect('/');
+	    }
 	    
 	    // Get the list of transactions
 	    $curl = curl_init();
@@ -149,7 +167,19 @@ class MondoController extends Controller
     // Download a list of transactions from Mondo in QIF format
     public function downloadTransactions(Request $request)
     {
+	    if (empty($request->session()->get('mondo_access_token')))
+	    {
+		    // Redirect to Mondo auth
+		    return redirect('/r/to-mondo-auth');
+	    }
+	    
 	    $account_id = $request->input('account_id');
+	    
+	    if (empty($account_id))
+	    {
+		    // Redirect to home page
+		    return redirect('/');
+	    }
 	    
 	    // Get the list of transactions
 	    $curl = curl_init();
