@@ -63,10 +63,10 @@ class MondoController extends Controller
 		    $response = json_decode($response);
 		    
 		    // Save Mondo variables to the session
-		    $response->session()->put('mondo_access_token', $response->access_token);
-		    $response->session()->put('mondo_access_token_expiry', $now + $response->expires_in);
-		    $response->session()->put('mondo_refresh_token', $response->refresh_token);
-		    $response->session()->put('mondo_user_id', $response->user_id);
+		    $request->session()->put('mondo_access_token', $response->access_token);
+		    $request->session()->put('mondo_access_token_expiry', $now + $response->expires_in);
+		    $request->session()->put('mondo_refresh_token', $response->refresh_token);
+		    $request->session()->put('mondo_user_id', $response->user_id);
 		    
 		    // Redirect back to where we came from
 		    return redirect(config('app.url').$request->session()->pull('mondo_auth_redirect_to'));
@@ -84,7 +84,7 @@ class MondoController extends Controller
 	    // Set up configuration
 	    $client_id = config('services.mondo.client_id');
 	    $client_secret = config('services.mondo.client_secret');
-	    $refresh_token = $response->session()->get('mondo_refresh_token');
+	    $refresh_token = $request->session()->get('mondo_refresh_token');
 	    
 		// Send the code to Mondo to get an access token
 	    $now = time();
@@ -101,10 +101,10 @@ class MondoController extends Controller
 	    $response = json_decode($response);
 	    
 	    // Save Mondo variables to the session
-	    $response->session()->put('mondo_access_token', $response->access_token);
-	    $response->session()->put('mondo_access_token_expiry', $now + $response->expires_in);
-	    $response->session()->put('mondo_refresh_token', $response->refresh_token);
-	    $response->session()->put('mondo_user_id', $response->user_id);
+	    $request->session()->put('mondo_access_token', $response->access_token);
+	    $request->session()->put('mondo_access_token_expiry', $now + $response->expires_in);
+	    $request->session()->put('mondo_refresh_token', $response->refresh_token);
+	    $request->session()->put('mondo_user_id', $response->user_id);
 	    
 	    // Redirect back to where we came from
 	    return redirect(config('app.url').$request->input('redirect_to'));
@@ -117,7 +117,7 @@ class MondoController extends Controller
 	    $curl = curl_init();
 	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/accounts');
 	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.$response->session()->get('mondo_access_token')]);
+	    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.$request->session()->get('mondo_access_token')]);
 	    $response = curl_exec($curl);
 	    curl_close($curl);
 	    
@@ -136,7 +136,7 @@ class MondoController extends Controller
 	    $curl = curl_init();
 	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/transactions?account_id='.$account_id);
 	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.$response->session()->get('mondo_access_token')]);
+	    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.$request->session()->get('mondo_access_token')]);
 	    $response = curl_exec($curl);
 	    curl_close($curl);
 	    
@@ -155,7 +155,7 @@ class MondoController extends Controller
 	    $curl = curl_init();
 	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/transactions?account_id='.$account_id);
 	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.$response->session()->get('mondo_access_token')]);
+	    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.$request->session()->get('mondo_access_token')]);
 	    $response = curl_exec($curl);
 	    curl_close($curl);
 	    
