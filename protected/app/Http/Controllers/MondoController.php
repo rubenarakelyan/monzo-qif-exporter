@@ -194,6 +194,6 @@ class MondoController extends Controller
 	    // Decode the response from Mondo
 	    $response = json_decode($response);
 	    
-	    return view('app.transactions-qif', ['account_id' => $account_id, 'transactions' => $response->transactions])->header('Content-Type', 'application/qif');
+	    return response()->view('app.transactions-qif', ['account_id' => $account_id, 'transactions' => $response->transactions])->header('Content-Type', 'application/qif');
     }
 }
