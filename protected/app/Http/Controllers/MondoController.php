@@ -194,7 +194,7 @@ class MondoController extends Controller
 	    // Decode the response from Mondo
 	    $response = json_decode($response);
 	    
-	    if ($request->input('csv'))
+	    if ($request->input('type') === 'csv')
 	    {
 		    return response()->view('app.transactions-csv', ['account_id' => $account_id, 'transactions' => $response->transactions])->header('Content-Type', 'text/csv')->header('Content-Disposition', 'attachment; filename=transactions.csv');
 	    }
