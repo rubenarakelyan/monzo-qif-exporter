@@ -31,6 +31,9 @@
 	    </div>
       </nav>
       @yield('content')
+      <footer>
+	    <p class="small">&copy; 2016 <a href="https://ruben.am/" target="_blank">Ruben Arakelyan</a>.</p>
+      </footer>
 	</div>
     <script src="js/jquery-2.2.3.min.js"></script>
     <script src="js/bootstrap-3.3.6.min.js"></script>
