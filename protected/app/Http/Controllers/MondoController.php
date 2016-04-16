@@ -177,7 +177,7 @@ class MondoController extends Controller
 	    
 	    $account_id = $request->input('account_id');
 	    
-	    if (empty($account_id))
+	    if (empty($account_id) || !in_array($request->input('type'), ['qif', 'csv']))
 	    {
 		    // Redirect to home page
 		    return redirect('/');
@@ -194,6 +194,13 @@ class MondoController extends Controller
 	    // Decode the response from Mondo
 	    $response = json_decode($response);
 	    
-	    return response()->view('app.transactions-qif', ['account_id' => $account_id, 'transactions' => $response->transactions])->header('Content-Type', 'application/qif')->header('Content-Disposition', 'attachment; filename=transactions.qif');
+	    if ($request->input('csv'))
+	    {
+		    return response()->view('app.transactions-csv', ['account_id' => $account_id, 'transactions' => $response->transactions])->header('Content-Type', 'text/csv')->header('Content-Disposition', 'attachment; filename=transactions.csv');
+	    }
+	    else
+	    {
+		    return response()->view('app.transactions-qif', ['account_id' => $account_id, 'transactions' => $response->transactions])->header('Content-Type', 'application/qif')->header('Content-Disposition', 'attachment; filename=transactions.qif');
+	    }
     }
 }
