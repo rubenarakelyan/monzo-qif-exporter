@@ -34,7 +34,7 @@
       <footer>
 	    <div class="row">
 		  <div class="col-md-10 col-md-offset-1">
-			<p class="small">&copy; 2016 <a href="https://ruben.am/" target="_blank">Ruben Arakelyan</a>.</p>
+			<p class="small"><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Mondo QIF Exporter</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://ruben.am/" property="cc:attributionName" rel="cc:attributionURL" target="_blank">Ruben Arakelyan</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
 		  </div>
 	    </div>
       </footer>
