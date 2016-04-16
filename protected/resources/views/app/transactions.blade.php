@@ -9,7 +9,7 @@
           @if ($transactions === null)
           <p>There are no transactions to display.</p>
           @else
-          <table class="table table-hover">
+          <table class="table table-hover table-vertical-align">
 	        <thead>
 	          <tr>
 		        <th></th>

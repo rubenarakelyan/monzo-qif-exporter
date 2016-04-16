@@ -1,5 +1,9 @@
+.table-vertical-align {
+	vertical-align: middle !important;
+}
+
 .credit {
-	color: #00ffea;
+	color: #00ff2c;
 }
 
 .debit {
