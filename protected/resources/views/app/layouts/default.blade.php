@@ -32,7 +32,11 @@
       </nav>
       @yield('content')
       <footer>
-	    <p class="small">&copy; 2016 <a href="https://ruben.am/" target="_blank">Ruben Arakelyan</a>.</p>
+	    <div class="row">
+		  <div class="col-md-10 col-md-offset-1">
+			<p class="small">&copy; 2016 <a href="https://ruben.am/" target="_blank">Ruben Arakelyan</a>.</p>
+		  </div>
+	    </div>
       </footer>
 	</div>
     <script src="js/jquery-2.2.3.min.js"></script>
