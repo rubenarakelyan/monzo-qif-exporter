@@ -5,17 +5,17 @@
 @section('content')
 
       <div class="row">
-	    <div class="col-md-10 text-right">
+	    <div class="col-md-10 col-md-offset-1 text-right">
 		  <form action="/transactions" method="get" class="form-inline">
 			<input type="hidden" name="account_id" value="{{ $account_id }}">
 			<div class="form-group">
-		      <div class="input-group input-daterange" data-provide="datepicker">
-                <input type="text" name="from" value="{{ $first_transaction_date }}" class="form-control" data-date-format="yyyy-mm-dd">
+		      <div class="input-group input-daterange" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                <input type="text" name="from" value="{{ $first_transaction_date }}" class="form-control input-sm" style="width:150px">
                 <span class="input-group-addon">to</span>
-                <input type="text" name="to" value="{{ $last_transaction_date }}" class="form-control" data-date-format="yyyy-mm-dd">
+                <input type="text" name="to" value="{{ $last_transaction_date }}" class="form-control input-sm" style="width:150px">
               </div>
 	        </div>
-	        <button type="submit" class="btn btn-default">Sign in</button>
+	        <button type="submit" class="btn btn-primary btn-sm">Filter</button>
 		  </form>
 	    </div>
       </div>
