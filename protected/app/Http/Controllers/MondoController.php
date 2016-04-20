@@ -153,21 +153,24 @@ class MondoController extends Controller
 	    }
 	    
 	    // Get any date filters
-	    $date_filter = '';
+	    $date_filter_utc = '';
+	    $date_filter_local = '';
 	    
 	    if ($request->has('from'))
 	    {
-		    $date_filter .= '&since='.(new \DateTime($request->input('from'), (new \DateTimeZone('Europe/London'))))->setTimezone(new \DateTimeZone('UTC'))->format('Y-m-d').'T00:00:00Z';
+		    $date_filter_utc .= '&since='.(new \DateTime($request->input('from'), (new \DateTimeZone('Europe/London'))))->setTimezone(new \DateTimeZone('UTC'))->format('Y-m-d').'T00:00:00Z';
+		    $date_filter_local .= '&amp;from='.$request->input('from');
 	    }
 	    
 	    if ($request->has('to'))
 	    {
-		    $date_filter .= '&before='.(new \DateTime($request->input('to'), (new \DateTimeZone('Europe/London'))))->setTimezone(new \DateTimeZone('UTC'))->format('Y-m-d').'T00:00:00Z';
+		    $date_filter_utc .= '&before='.(new \DateTime($request->input('to'), (new \DateTimeZone('Europe/London'))))->setTimezone(new \DateTimeZone('UTC'))->format('Y-m-d').'T00:00:00Z';
+		    $date_filter_local .= '&amp;to='.$request->input('to');
 	    }
 	    
 	    // Get the list of transactions
 	    $curl = curl_init();
-	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/transactions?account_id='.$account_id.'&expand[]=merchant'.$date_filter);
+	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/transactions?account_id='.$account_id.'&expand[]=merchant'.$date_filter_utc);
 	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.$request->session()->get('mondo_access_token')]);
 	    $response = curl_exec($curl);
@@ -180,7 +183,7 @@ class MondoController extends Controller
 	    $first_transaction_date = (!empty($response->transactions[0]->created) ? (new \DateTime($response->transactions[0]->created))->setTimezone(new \DateTimeZone('Europe/London'))->format('Y-m-d') : $today);
 	    $last_transaction_date = (!empty($response->transactions[count($response->transactions) - 1]->created) ? (new \DateTime($response->transactions[count($response->transactions) - 1]->created))->setTimezone(new \DateTimeZone('Europe/London'))->format('Y-m-d') : $today);
 	    
-	    return view('app.transactions', ['account_id' => $account_id, 'transactions' => $response->transactions, 'first_transaction_date' => $first_transaction_date, 'last_transaction_date' => $last_transaction_date]);
+	    return view('app.transactions', ['account_id' => $account_id, 'transactions' => $response->transactions, 'first_transaction_date' => $first_transaction_date, 'last_transaction_date' => $last_transaction_date, 'date_filter_local' => $date_filter_local]);
     }
     
     // Download a list of transactions from Mondo in QIF format
@@ -200,9 +203,22 @@ class MondoController extends Controller
 		    return redirect('/');
 	    }
 	    
+	    // Get any date filters
+	    $date_filter_utc = '';
+	    
+	    if ($request->has('from'))
+	    {
+		    $date_filter_utc .= '&since='.(new \DateTime($request->input('from'), (new \DateTimeZone('Europe/London'))))->setTimezone(new \DateTimeZone('UTC'))->format('Y-m-d').'T00:00:00Z';
+	    }
+	    
+	    if ($request->has('to'))
+	    {
+		    $date_filter_utc .= '&before='.(new \DateTime($request->input('to'), (new \DateTimeZone('Europe/London'))))->setTimezone(new \DateTimeZone('UTC'))->format('Y-m-d').'T00:00:00Z';
+	    }
+	    
 	    // Get the list of transactions
 	    $curl = curl_init();
-	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/transactions?account_id='.$account_id);
+	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/transactions?account_id='.$account_id.$date_filter_utc);
 	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.$request->session()->get('mondo_access_token')]);
 	    $response = curl_exec($curl);

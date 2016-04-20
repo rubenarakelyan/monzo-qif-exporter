@@ -46,8 +46,8 @@
 	          @endforeach
 	        </tbody>
           </table>
-          <a href="/transactions/download?account_id={{ $account_id }}&amp;type=qif" class="btn btn-default"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download transactions (QIF)</a>
-          <a href="/transactions/download?account_id={{ $account_id }}&amp;type=csv" class="btn btn-default"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download transactions (CSV)</a>
+          <a href="/transactions/download?account_id={{ $account_id }}&amp;type=qif{{ $date_filter_local }}" class="btn btn-default"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download transactions (QIF)</a>
+          <a href="/transactions/download?account_id={{ $account_id }}&amp;type=csv{{ $date_filter_local }}" class="btn btn-default"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download transactions (CSV)</a>
           @endif
 	    </div>
       </div>
