@@ -177,8 +177,8 @@ class MondoController extends Controller
 	    $response = json_decode($response);
 	    
 	    $today = (new \DateTime())->setTimezone(new \DateTimeZone('Europe/London'))->format('Y-m-d');
-	    $first_transaction_date = (!empty($response[0]->created) ? (new \DateTime($response[0]->created))->setTimezone(new \DateTimeZone('Europe/London'))->format('Y-m-d') : $today);
-	    $last_transaction_date = (!empty($response[count($response) - 1]->created) ? (new \DateTime($response[count($response) - 1]->created))->setTimezone(new \DateTimeZone('Europe/London'))->format('Y-m-d') : $today);
+	    $first_transaction_date = (!empty($response->transactions[0]->created) ? (new \DateTime($response->transactions[0]->created))->setTimezone(new \DateTimeZone('Europe/London'))->format('Y-m-d') : $today);
+	    $last_transaction_date = (!empty($response->transactions[count($response) - 1]->created) ? (new \DateTime($response->transactions[count($response) - 1]->created))->setTimezone(new \DateTimeZone('Europe/London'))->format('Y-m-d') : $today);
 	    
 	    return view('app.transactions', ['account_id' => $account_id, 'transactions' => $response->transactions, 'first_transaction_date' => $first_transaction_date, 'last_transaction_date' => $last_transaction_date]);
     }
