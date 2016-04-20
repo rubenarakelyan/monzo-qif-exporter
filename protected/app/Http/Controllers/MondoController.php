@@ -152,9 +152,22 @@ class MondoController extends Controller
 		    return redirect('/');
 	    }
 	    
+	    // Get any date filters
+	    $date_filter = '';
+	    
+	    if ($request->has('from'))
+	    {
+		    $date_filter .= '&since='.(new \DateTime($request->input('from'), (new \DateTimeZone('Europe/London'))))->setTimezone(new \DateTimeZone('UTC'))->format('Y-m-d').'T00:00:00Z';
+	    }
+	    
+	    if ($request->has('to'))
+	    {
+		    $date_filter .= '&before='.(new \DateTime($request->input('to'), (new \DateTimeZone('Europe/London'))))->setTimezone(new \DateTimeZone('UTC'))->format('Y-m-d').'T00:00:00Z';
+	    }
+	    
 	    // Get the list of transactions
 	    $curl = curl_init();
-	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/transactions?account_id='.$account_id.'&expand[]=merchant');
+	    curl_setopt($curl, CURLOPT_URL, 'https://api.getmondo.co.uk/transactions?account_id='.$account_id.'&expand[]=merchant'.$date_filter);
 	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.$request->session()->get('mondo_access_token')]);
 	    $response = curl_exec($curl);
@@ -163,7 +176,11 @@ class MondoController extends Controller
 	    // Decode the response from Mondo
 	    $response = json_decode($response);
 	    
-	    return view('app.transactions', ['account_id' => $account_id, 'transactions' => $response->transactions]);
+	    $today = (new \DateTime())->setTimezone(new \DateTimeZone('Europe/London'))->format('Y-m-d');
+	    $first_transaction_date = (!empty($response[0]->created) ? (new \DateTime($response[0]->created))->setTimezone(new \DateTimeZone('Europe/London'))->format('Y-m-d') : $today);
+	    $last_transaction_date = (!empty($response[count($response) - 1]->created) ? (new \DateTime($response[count($response) - 1]->created))->setTimezone(new \DateTimeZone('Europe/London'))->format('Y-m-d') : $today);
+	    
+	    return view('app.transactions', ['account_id' => $account_id, 'transactions' => $response->transactions, 'first_transaction_date' => $first_transaction_date, 'last_transaction_date' => $last_transaction_date]);
     }
     
     // Download a list of transactions from Mondo in QIF format

@@ -5,6 +5,21 @@
 @section('content')
 
       <div class="row">
+	    <div class="col-md-10 text-right">
+		  <form action="/transactions" method="get" class="form-inline">
+			<input type="hidden" name="account_id" value="{{ $account_id }}">
+			<div class="form-group">
+		      <div class="input-group input-daterange" data-provide="datepicker">
+                <input type="text" name="from" value="{{ $first_transaction_date }}" class="form-control" data-date-format="yyyy-mm-dd">
+                <span class="input-group-addon">to</span>
+                <input type="text" name="to" value="{{ $last_transaction_date }}" class="form-control" data-date-format="yyyy-mm-dd">
+              </div>
+	        </div>
+	        <button type="submit" class="btn btn-default">Sign in</button>
+		  </form>
+	    </div>
+      </div>
+      <div class="row">
 	    <div class="col-md-10 col-md-offset-1">
           @if ($transactions === null)
           <p>There are no transactions to display.</p>

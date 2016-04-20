@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') | Mondo QIF Exporter</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
   </head>
   <body>
@@ -41,5 +42,6 @@
 	</div>
     <script src="js/jquery-2.2.3.min.js"></script>
     <script src="js/bootstrap-3.3.6.min.js"></script>
+    <script src="js/bootstrap-datepicker-1.5.1.min.js"></script>
   </body>
 </html>
