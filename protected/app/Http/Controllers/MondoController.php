@@ -178,7 +178,7 @@ class MondoController extends Controller
 	    
 	    $today = (new \DateTime())->setTimezone(new \DateTimeZone('Europe/London'))->format('Y-m-d');
 	    $first_transaction_date = (!empty($response->transactions[0]->created) ? (new \DateTime($response->transactions[0]->created))->setTimezone(new \DateTimeZone('Europe/London'))->format('Y-m-d') : $today);
-	    $last_transaction_date = (!empty($response->transactions[count($response) - 1]->created) ? (new \DateTime($response->transactions[count($response) - 1]->created))->setTimezone(new \DateTimeZone('Europe/London'))->format('Y-m-d') : $today);
+	    $last_transaction_date = (!empty($response->transactions[count($response->transactions) - 1]->created) ? (new \DateTime($response->transactions[count($response->transactions) - 1]->created))->setTimezone(new \DateTimeZone('Europe/London'))->format('Y-m-d') : $today);
 	    
 	    return view('app.transactions', ['account_id' => $account_id, 'transactions' => $response->transactions, 'first_transaction_date' => $first_transaction_date, 'last_transaction_date' => $last_transaction_date]);
     }
