@@ -16,15 +16,17 @@
 		        <th>Date/Time</th>
 		        <th>Merchant</th>
 		        <th class="text-right">Amount</th>
+		        <th class="text-right">Balance</th>
 	          </tr>
 	        </thead>
 	        <tbody>
 	          @foreach ($transactions as $transaction)
 	          <tr>
 		        <td>@if (!empty($transaction->merchant->logo)) <img src="{{ $transaction->merchant->logo }}" width="30" height="30" alt=""> @endif</td>
-		        <td>{{ (new \DateTime($transaction->created))->format('j M Y H:i') }}</td>
+		        <td>{{ (new \DateTime($transaction->created))->setTimezone(new \DateTimeZone('Europe/London'))->format('j M Y H:i') }}</td>
 		        <td>@if (!empty($transaction->merchant->name)) {{ $transaction->merchant->name }} @else {{ $transaction->description }} @endif</td>
 		        <td class="text-right @if (($transaction->amount / 100) < 0) debit @else credit @endif">{{ Currency::withPrefix(abs($transaction->amount / 100), $transaction->currency, 2) }}</td>
+		        <td class="text-right">{{ Currency::withPrefix(abs($transaction->account_balance / 100), $transaction->currency, 2) }}</td>
 	          </tr>
 	          @endforeach
 	        </tbody>
