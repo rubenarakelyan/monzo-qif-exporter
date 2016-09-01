@@ -1,6 +1,6 @@
 @extends('app.layouts.default')
 
-@section('title', 'List of your Mondo accounts')
+@section('title', 'List of your Monzo accounts')
 
 @section('content')
 

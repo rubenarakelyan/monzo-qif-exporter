@@ -14,9 +14,9 @@
 Route::get('/', 'StaticController@home');
 Route::get('/about', 'StaticController@about');
 
-Route::get('/r/to-mondo-auth', 'MondoController@redirectToMondoAuth');
-Route::get('/r/from-mondo-auth', 'MondoController@redirectFromMondoAuth');
-Route::get('/r/to-mondo-refresh', 'MondoController@redirectToMondoRefresh');
-Route::get('/accounts', 'MondoController@getAccounts');
-Route::get('/transactions', 'MondoController@getTransactions');
-Route::get('/transactions/download', 'MondoController@downloadTransactions');
+Route::get('/r/to-monzo-auth', 'MonzoController@redirectToMonzoAuth');
+Route::get('/r/from-monzo-auth', 'MonzoController@redirectFromMonzoAuth');
+Route::get('/r/to-monzo-refresh', 'MonzoController@redirectToMonzoRefresh');
+Route::get('/accounts', 'MonzoController@getAccounts');
+Route::get('/transactions', 'MonzoController@getTransactions');
+Route::get('/transactions/download', 'MonzoController@downloadTransactions');

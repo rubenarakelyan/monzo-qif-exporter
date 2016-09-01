@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title') | Mondo QIF Exporter</title>
+    <title>@yield('title') | Monzo QIF Exporter</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -28,7 +28,7 @@
 			  <span class="icon-bar"></span>
 			  <span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/">Mondo QIF Exporter</a>
+			<a class="navbar-brand" href="/">Monzo QIF Exporter</a>
 		  </div>
 		  <div class="collapse navbar-collapse" id="global-navbar-collapse">
 			<ul class="nav navbar-nav">
@@ -43,7 +43,7 @@
       <footer>
 	    <div class="row">
 		  <div class="col-md-10 col-md-offset-1">
-			<p class="small"><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Mondo QIF Exporter</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://ruben.am/" property="cc:attributionName" rel="cc:attributionURL" target="_blank">Ruben Arakelyan</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+			<p class="small"><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Monzo QIF Exporter</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://ruben.am/" property="cc:attributionName" rel="cc:attributionURL" target="_blank">Ruben Arakelyan</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
 		  </div>
 	    </div>
       </footer>

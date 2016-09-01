@@ -14,10 +14,10 @@ return [
     |
     */
 
-    'mondo' => [
-        'client_id' => env('MONDO_CLIENT_ID'),
-        'client_secret' => env('MONDO_CLIENT_SECRET'),
-        'redirect_uri' => env('MONDO_REDIRECT_URI'),
+    'monzo' => [
+        'client_id' => env('MONZO_CLIENT_ID'),
+        'client_secret' => env('MONZO_CLIENT_SECRET'),
+        'redirect_uri' => env('MONZO_REDIRECT_URI'),
     ],
 
 ];
